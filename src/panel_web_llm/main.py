@@ -22,7 +22,8 @@ class WebLLM(JSComponent):
     """
 
     history = param.Integer(
-        default=3,
+        default=10,
+        bounds=(1, 100),
         doc="The number of previous messages to include in the completion.",
     )
 
@@ -89,7 +90,7 @@ class WebLLM(JSComponent):
                 } catch (error) {
                 model.load_status = {
                     progress: 0,
-                    text: error.message + " Or try again later if rate limited.",
+                    text: error.message + " Try again later, or try a different size/quantization.",
                 };
                 model.loaded = false;
                 }
@@ -129,11 +130,15 @@ class WebLLM(JSComponent):
         self._model_select = pn.widgets.NestedSelect(layout=pn.Row)
         super().__init__(**params)
 
-        self._model_temperature = pn.widgets.NumberInput.from_param(
-            self.param.temperature,
-            width=75,
+        self._history_input = pn.widgets.IntSlider.from_param(
+            self.param.history,
             disabled=self.param.loading,
-            description=None,  # override default text
+            sizing_mode="stretch_width",
+        )
+        self._temperature_input = pn.widgets.FloatSlider.from_param(
+            self.param.temperature,
+            disabled=self.param.loading,
+            sizing_mode="stretch_width",
         )
         self._load_button = pn.widgets.Button.from_param(
             self.param.load_model,
@@ -144,12 +149,18 @@ class WebLLM(JSComponent):
             description=None,  # override default text
         )
         load_status = self.param.load_status.rx()
-        model_config = pn.Row(
+        load_row = pn.Row(
             self._model_select,
-            self._model_temperature,
             self._load_button,
             sizing_mode="stretch_width",
             margin=0,
+        )
+        config_row = pn.Row(self._temperature_input, self._history_input, sizing_mode="stretch_width", margin=0)
+        system_input = pn.widgets.TextAreaInput.from_param(
+            self.param.system,
+            auto_grow=True,
+            resizable="height",
+            sizing_mode="stretch_width",
         )
         load_progress = pn.Column(
             pn.indicators.Progress(
@@ -166,7 +177,9 @@ class WebLLM(JSComponent):
         )
         self._card_header = pn.pane.HTML("<b>Model Settings</b>")
         self._card = pn.Card(
-            model_config,
+            load_row,
+            config_row,
+            system_input,
             load_progress,
             header=self._card_header,
             sizing_mode="stretch_width",

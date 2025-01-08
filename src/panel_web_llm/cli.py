@@ -23,7 +23,7 @@ def parse_args():
         "model_slug",  # positional argument for model_slug
         type=str,
         nargs="?",
-        default="Qwen2.5-Coder-7B-Instruct-q0f16-MLC",
+        default="Qwen2.5-Coder-7B-Instruct-q4f16_1-MLC",
         help="Model slug to load",
     )
     run_parser.add_argument(
