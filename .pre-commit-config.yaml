@@ -58,7 +58,7 @@ repos:
     rev: v9.13.0
     hooks:
       - id: eslint
-        args: ['-c', '{{ project_slug_snake_case }}/.eslintrc.js', '{{ project_slug_snake_case }}/*.ts', '{{ project_slug_snake_case }}/models/**/*.ts', '--fix']
+        args: ['-c', 'panel_web_llm/.eslintrc.js', 'panel_web_llm/*.ts', 'panel_web_llm/models/**/*.ts', '--fix']
         additional_dependencies:
           - 'eslint@8.57.0'
           - '@stylistic/eslint-plugin@1.6.3'
