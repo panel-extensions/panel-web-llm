@@ -1,0 +1,13 @@
+# This file is managed by Copier; DO NOT EDIT OR REMOVE.
+_commit: a1505f1
+_src_path: https://github.com/panel-extensions/copier-template-panel-extension
+add_autobump_workflow: true
+author_email: a.holoviz.dev@gmail.com
+author_name: Andrew
+docs_url: https://panel-extensions.github.io/panel-web-llm/
+github_url: https://github.com/panel-extensions/panel-web-llm
+github_user: panel-extensions
+minimal_python_version: py310
+project_short_description: Extends HoloViz Panel with an interface that wraps a client-side
+    LLM.
+project_slug: panel-web-llm
