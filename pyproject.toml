@@ -151,3 +151,7 @@ check_untyped_defs = true
 [tool.hatch.version]
 source = "vcs"
 raw-options = { version_scheme = "no-guess-dev" }
+
+[project.scripts]
+panel-web-llm = "panel_web_llm.cli:main"
+pllm = "panel_web_llm.cli:main"
