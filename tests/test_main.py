@@ -19,7 +19,7 @@ class TestWebLLM:
         assert not web_llm.loading
         assert not web_llm.running
         assert web_llm.temperature == 1
-        assert web_llm.history == 3
+        assert web_llm.history == 10
         assert web_llm.multiple_loads
         assert web_llm.load_status == {"text": "", "progress": 0}
 
