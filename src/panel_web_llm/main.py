@@ -408,7 +408,7 @@ class WebLLMComponentMixin(param.Parameterized):
 
     multiple_loads = param.Boolean(
         default=True,
-        doc="Whether to allow loading different models multiple times",
+        doc="Whether to allow loading different models multiple times.",
     )
 
     load_on_init = param.Boolean(
@@ -416,7 +416,7 @@ class WebLLMComponentMixin(param.Parameterized):
         doc="Whether to load the model on initialization.",
     )
 
-    web_llm_kwargs = param.Dict(default={}, doc="Keyword arguments to propagate to the WebLLM")
+    web_llm_kwargs = param.Dict(default={}, doc="Keyword arguments to propagate to the WebLLM.")
 
     def __init__(self, **params):
         """

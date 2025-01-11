@@ -26,7 +26,7 @@ class TestWebLLM:
     def test_model_select_initialization(self, web_llm):
         """Test model selection widget initialization."""
         assert web_llm._model_select.disabled is False
-        assert web_llm._model_temperature.disabled is False
+        assert web_llm.temperature.disabled is False
         assert web_llm._load_button.disabled is False
         assert "Load" in web_llm._load_button.name
 
@@ -35,7 +35,7 @@ class TestWebLLM:
         """Test control states during loading."""
         web_llm.loading = loading_state
         assert web_llm._model_select.disabled is loading_state
-        assert web_llm._model_temperature.disabled is loading_state
+        assert web_llm.temperature.disabled is loading_state
 
     def test_load_button_state_changes(self, web_llm):
         """Test load button state changes."""
