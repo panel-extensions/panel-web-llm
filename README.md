@@ -1,7 +1,6 @@
 # ✨ panel-web-llm
 
 [![CI](https://img.shields.io/github/actions/workflow/status/panel-extensions/panel-web-llm/ci.yml?style=flat-square&branch=main)](https://github.com/panel-extensions/panel-web-llm/actions/workflows/ci.yml)
-[![conda-forge](https://img.shields.io/conda/vn/conda-forge/panel-web-llm?logoColor=white&logo=conda-forge&style=flat-square)](https://prefix.dev/channels/conda-forge/packages/panel-web-llm)
 [![pypi-version](https://img.shields.io/pypi/v/panel-web-llm.svg?logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/panel-web-llm)
 [![python-version](https://img.shields.io/pypi/pyversions/panel-web-llm?logoColor=white&logo=python&style=flat-square)](https://pypi.org/project/panel-web-llm)
 
@@ -30,6 +29,10 @@ pip install panel-web-llm
 ```
 
 ## Usage
+
+### Online
+
+Try it out in [Examples](https://panel-extensions.github.io/panel-web-llm/examples/).
 
 ### Command Line Interface
 
