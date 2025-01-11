@@ -4,6 +4,7 @@ import importlib.metadata
 import warnings
 
 from .main import WebLLM
+from .main import WebLLMComponentMixin
 from .main import WebLLMFeed
 from .main import WebLLMInterface
 from .models import ModelParam
@@ -18,5 +19,6 @@ __all__: list[str] = [
     "WebLLM",
     "WebLLMFeed",
     "WebLLMInterface",
+    "WebLLMComponentMixin",
     "ModelParam",
 ]  # <- IMPORTANT FOR DOCS: fill with imports

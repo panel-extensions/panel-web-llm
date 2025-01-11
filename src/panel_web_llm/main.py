@@ -31,6 +31,13 @@ class WebLLM(JSComponent):
 
     load_model = param.Event(doc="Event to trigger model loading.")
 
+    load_layout = param.Selector(
+        default="row",
+        objects=["row", "column"],
+        doc="""
+        The layout type of the widgets.""",
+    )
+
     model_slug = param.Selector(default="", doc="The model slug to load.")
 
     model_mapping = param.Dict(default=MODEL_MAPPING, doc="Nested mapping of model names to slugs.")
@@ -127,7 +134,8 @@ class WebLLM(JSComponent):
                 Keyword arguments for the Panel and Param base classes.
         """
         self._buffer = []
-        self._model_select = pn.widgets.NestedSelect(layout=pn.Row)
+        load_layout = pn.Column if params.get("load_layout") == "column" else pn.Row
+        self._model_select = pn.widgets.NestedSelect(layout=load_layout)
         super().__init__(**params)
 
         self._history_input = pn.widgets.IntSlider.from_param(
@@ -149,13 +157,18 @@ class WebLLM(JSComponent):
             description=None,  # override default text
         )
         load_status = self.param.load_status.rx()
-        load_row = pn.Row(
+        load_row = load_layout(
             self._model_select,
             self._load_button,
             sizing_mode="stretch_width",
             margin=0,
         )
-        config_row = pn.Row(self._temperature_input, self._history_input, sizing_mode="stretch_width", margin=0)
+        config_row = pn.Row(
+            self._temperature_input,
+            self._history_input,
+            sizing_mode="stretch_width",
+            margin=0,
+        )
         system_input = pn.widgets.TextAreaInput.from_param(
             self.param.system,
             auto_grow=True,
@@ -444,8 +457,8 @@ class WebLLMComponentMixin(param.Parameterized):
 
 
 class WebLLMFeed(ChatFeed, WebLLMComponentMixin):
-    """See https://panel.holoviz.org/reference/chat/ChatFeed.html for more information."""
+    """See [ChatFeed](https://panel.holoviz.org/reference/chat/ChatFeed.html) for params and usage."""
 
 
 class WebLLMInterface(ChatInterface, WebLLMComponentMixin):
-    """See https://panel.holoviz.org/reference/chat/ChatInterface.html for more information."""
+    """See [ChatInterface](https://panel.holoviz.org/reference/chat/ChatInterface.html) for params and usage."""
