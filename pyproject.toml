@@ -86,6 +86,7 @@ fix = true
 
 [tool.ruff.lint]
 ignore = [
+    "D401", # First line should be in imperative mood; try rephrasing
     "D203", # one-blank-line-before-class and `no-blank-line-before-class` (D211) are incompatible.
     "D212", # multi-line-summary-first-line. Alternative is to ignore D213 `multi-line-summary-second-line
     "E402",  # Module level import not at top of file
@@ -118,7 +119,7 @@ select = [
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 # Ignore all directories named `tests`.
 "tests/**" = ["D"]
 # Ignore all files that end in `_test.py`.
@@ -150,3 +151,7 @@ check_untyped_defs = true
 [tool.hatch.version]
 source = "vcs"
 raw-options = { version_scheme = "no-guess-dev" }
+
+[project.scripts]
+panel-web-llm = "panel_web_llm.cli:main"
+pllm = "panel_web_llm.cli:main"
