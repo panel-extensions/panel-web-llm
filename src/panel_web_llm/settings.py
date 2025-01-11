@@ -1,3 +1,5 @@
+"""Config settings."""
+
 MODEL_MAPPING = {
     "Llama-3": {
         "8B": {
