@@ -11,11 +11,11 @@ It leverages WebLLM under the hood to provide an in-browser LLM execution enviro
 
 ## Features
 
-**Run LLMs in the Browser**: Execute large language models directly in the browser without requiring server-side APIs or cloud services.
-**Offline Capability**: Cache models locally in the browser, enabling offline use after initial download.
-**Model Variety**: Supports multiple models, including Llama 2 and Qwen 2.5. Check Available Models for the most up-to-date list.
-**Privacy-Preserving**: Keeps all computations client-side, ensuring data privacy and security.
-**Panel Integration**: Effortlessly incorporate LLM-powered features into interactive Panel applications.
+- **Run LLMs in the Browser**: Execute large language models directly in the browser without requiring server-side APIs or cloud services.
+- **Offline Capability**: Cache models locally in the browser, enabling offline use after initial download.
+- **Model Variety**: Supports multiple models, including Llama 2 and Qwen 2.5. Check Available Models for the most up-to-date list.
+- **Privacy-Preserving**: Keeps all computations client-side, ensuring data privacy and security.
+- **Panel Integration**: Effortlessly incorporate LLM-powered features into interactive Panel applications.
 
 ## Pin Version
 
