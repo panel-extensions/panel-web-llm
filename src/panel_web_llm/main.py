@@ -177,10 +177,7 @@ class WebLLM(JSComponent):
             description=None,  # override default text
         )
         load_status = self.param.load_status.rx()
-        self._submit_row = pn.Row(
-            self._refresh_button,
-            self._load_button,
-        )
+        self._submit_row = pn.Row(self._refresh_button, self._load_button, align="end")
         load_row = load_layout(
             self._model_select_placeholder,
             self._submit_row,
