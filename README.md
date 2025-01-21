@@ -6,6 +6,8 @@
 
 This extension for HoloViz Panel introduces a client-side interface for running large language models (LLMs) directly in the browser.
 
+![demo](https://github.com/user-attachments/assets/c72d0cb3-b72b-44e7-b134-f80d165bfa40)
+
 It leverages WebLLM under the hood to provide an in-browser LLM execution environment, enabling fully client-side interactions without relying on server-side APIs.
 
 ## Features
