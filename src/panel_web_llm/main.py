@@ -53,7 +53,7 @@ class WebLLM(JSComponent):
     )
 
     system = param.String(
-        default="Be the best helper!",
+        default="Be a world-class helper. Try to keep your answers concise.",
         doc="The system prompt for the model completion.",
     )
 
@@ -480,8 +480,13 @@ class WebLLMComponentMixin(param.Parameterized):
             **self.web_llm_kwargs,
         )
         self.callback = self.web_llm.callback
+        self.edit_callback = self._edit_callback
         self.header = pn.Column(self.web_llm.menu, self.web_llm)
         pn.state.onload(self._onload)
+
+    def _edit_callback(self, contents, index, instance):
+        instance.objects = instance.objects[: index + 1]
+        self.respond()
 
     def _onload(self):
         if self.load_on_init:
