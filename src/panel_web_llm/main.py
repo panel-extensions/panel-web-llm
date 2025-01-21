@@ -53,7 +53,7 @@ class WebLLM(JSComponent):
     )
 
     system = param.String(
-        default="Be the most you can be; spread positivity!",
+        default="Be the best helper!",
         doc="The system prompt for the model completion.",
     )
 
@@ -72,6 +72,13 @@ class WebLLM(JSComponent):
         default=False,
         doc="""
         Whether the model is currently loading.""",
+    )
+
+    refresh = param.Event(
+        doc="""
+        Click to load the latest available models from https://mlc.ai/models.
+        Requires a network connection.
+        """
     )
 
     _esm = """
@@ -136,6 +143,9 @@ class WebLLM(JSComponent):
         self._buffer = []
         load_layout = pn.Column if params.get("load_layout") == "column" else pn.Row
         self._model_select = pn.widgets.NestedSelect(layout=load_layout)
+        self._model_select_placeholder = pn.pane.Placeholder(
+            object=self._model_select,
+        )
         super().__init__(**params)
 
         self._history_input = pn.widgets.IntSlider.from_param(
@@ -148,6 +158,16 @@ class WebLLM(JSComponent):
             disabled=self.param.loading,
             sizing_mode="stretch_width",
         )
+        self._refresh_button = pn.widgets.ButtonIcon.from_param(
+            self.param.refresh,
+            name="",
+            align="end",
+            icon="refresh",
+            active_icon="check",
+            toggle_duration=1000,
+            margin=(10, -5, 5, 0),
+            size="28px",
+        )
         self._load_button = pn.widgets.Button.from_param(
             self.param.load_model,
             name=param.rx("Load ") + self.param.model_slug,
@@ -158,7 +178,8 @@ class WebLLM(JSComponent):
         )
         load_status = self.param.load_status.rx()
         load_row = load_layout(
-            self._model_select,
+            self._model_select_placeholder,
+            self._refresh_button,
             self._load_button,
             sizing_mode="stretch_width",
             margin=0,
@@ -234,11 +255,19 @@ class WebLLM(JSComponent):
         if self.model_slug:
             model_params = ModelParam.from_model_slug(self.model_slug)
             value = model_params.to_dict(levels)
-        self._model_select.param.update(
+        # TODO: Bug https://github.com/holoviz/panel/issues/7647
+        # self._model_select.param.update(
+        #     options=options,
+        #     levels=levels,
+        #     value=value,
+        # )
+        self._model_select = pn.widgets.NestedSelect(
             options=options,
             levels=levels,
             value=value,
+            layout=self._model_select.layout,
         )
+        self._model_select_placeholder.object = self._model_select
         self.param["model_slug"].objects = sorted(value for models in MODEL_MAPPING.values() for sizes in models.values() for value in sizes.values())
 
     def _update_model_slug(self, event):
@@ -333,6 +362,7 @@ class WebLLM(JSComponent):
             elif reason:
                 return
 
+    @param.depends("refresh", watch=True)
     def refresh_model_mapping(self):
         """
         Refreshes the model mapping by fetching the latest from the mlc.ai website.
@@ -345,14 +375,18 @@ class WebLLM(JSComponent):
         import bs4
         import requests  # type: ignore
 
-        text = requests.get("https://mlc.ai/models#mlc-models").text
+        try:
+            text = requests.get("https://mlc.ai/models#mlc-models").text
+        except requests.ConnectionError:
+            self._refresh_button.param.update(icon="wifi-off", active_icon="x", description="Connection unavailable.")
+            return
         soup = bs4.BeautifulSoup(text, "html.parser")
         table = soup.find("table")
         links = table.find_all("a")
         model_mapping: dict = {}
         for link in links:
             model_slug = link.get("href").rsplit("/", 1)[-1]
-            model_params = ModelParam.from_slug(model_slug)
+            model_params = ModelParam.from_model_slug(model_slug)
             model_name = model_params.model
             model_parameters = model_params.size
             model_quantization = model_params.quantization

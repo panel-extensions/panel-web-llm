@@ -70,6 +70,13 @@ MODEL_MAPPING = {
             "q4f32_1": "Hermes-3-Llama-3.1-8B-q4f32_1-MLC",
         }
     },
+    "Hermes-3-Llama-3.2": {
+        "3B": {
+            "q0f16": "Hermes-3-Llama-3.2-3B-q0f16-MLC",
+            "q4f16_1": "Hermes-3-Llama-3.2-3B-q4f16_1-MLC",
+            "q4f32_1": "Hermes-3-Llama-3.2-3B-q4f32_1-MLC",
+        }
+    },
     "Phi-3-mini": {
         "128k": {
             "q0f16": "Phi-3-mini-128k-instruct-q0f16-MLC",
@@ -240,6 +247,40 @@ MODEL_MAPPING = {
             "q4f32_1": "Qwen2.5-Math-72B-Instruct-q4f32_1-MLC",
         },
     },
+    "DeepSeek-R1-Distill-Llama": {
+        "70B": {
+            "q0f16": "DeepSeek-R1-Distill-Llama-70B-q0f16-MLC",
+            "q4f16_1": "DeepSeek-R1-Distill-Llama-70B-q4f16_1-MLC",
+            "q4f32_1": "DeepSeek-R1-Distill-Llama-70B-q4f32_1-MLC",
+        },
+        "8B": {
+            "q0f16": "DeepSeek-R1-Distill-Llama-8B-q0f16-MLC",
+            "q4f16_1": "DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC",
+            "q4f32_1": "DeepSeek-R1-Distill-Llama-8B-q4f32_1-MLC",
+        },
+    },
+    "DeepSeek-R1-Distill-Qwen": {
+        "1.5B": {
+            "q0f16": "DeepSeek-R1-Distill-Qwen-1.5B-q0f16-MLC",
+            "q4f16_1": "DeepSeek-R1-Distill-Qwen-1.5B-q4f16_1-MLC",
+            "q4f32_1": "DeepSeek-R1-Distill-Qwen-1.5B-q4f32_1-MLC",
+        },
+        "14B": {
+            "q0f16": "DeepSeek-R1-Distill-Qwen-14B-q0f16-MLC",
+            "q4f16_1": "DeepSeek-R1-Distill-Qwen-14B-q4f16_1-MLC",
+            "q4f32_1": "DeepSeek-R1-Distill-Qwen-14B-q4f32_1-MLC",
+        },
+        "32B": {
+            "q0f16": "DeepSeek-R1-Distill-Qwen-32B-q0f16-MLC",
+            "q4f16_1": "DeepSeek-R1-Distill-Qwen-32B-q4f16_1-MLC",
+            "q4f32_1": "DeepSeek-R1-Distill-Qwen-32B-q4f32_1-MLC",
+        },
+        "7B": {
+            "q0f16": "DeepSeek-R1-Distill-Qwen-7B-q0f16-MLC",
+            "q4f16_1": "DeepSeek-R1-Distill-Qwen-7B-q4f16_1-MLC",
+            "q4f32_1": "DeepSeek-R1-Distill-Qwen-7B-q4f32_1-MLC",
+        },
+    },
     "DeepSeek-V2-Lite-Chat": {
         "-": {
             "q0f16": "DeepSeek-V2-Lite-Chat-q0f16-MLC",
@@ -260,46 +301,38 @@ MODEL_MAPPING = {
             "q0f32": "SmolLM-1.7B-Instruct-q0f32-MLC",
             "q4f16_1": "SmolLM-1.7B-Instruct-q4f16_1-MLC",
             "q4f32_1": "SmolLM-1.7B-Instruct-q4f32_1-MLC",
-        }
-    },
-    "SmolLM-135M-Instruct": {
-        "-": {
+        },
+        "135M": {
             "q0f16": "SmolLM-135M-Instruct-q0f16-MLC",
             "q0f32": "SmolLM-135M-Instruct-q0f32-MLC",
             "q4f16_1": "SmolLM-135M-Instruct-q4f16_1-MLC",
             "q4f32_1": "SmolLM-135M-Instruct-q4f32_1-MLC",
-        }
-    },
-    "SmolLM-360M-Instruct": {
-        "-": {
+        },
+        "360M": {
             "q0f16": "SmolLM-360M-Instruct-q0f16-MLC",
             "q0f32": "SmolLM-360M-Instruct-q0f32-MLC",
             "q4f16_1": "SmolLM-360M-Instruct-q4f16_1-MLC",
             "q4f32_1": "SmolLM-360M-Instruct-q4f32_1-MLC",
-        }
+        },
     },
     "SmolLM2": {
         "1.7B": {
             "q0f16": "SmolLM2-1.7B-Instruct-q0f16-MLC",
             "q4f16_1": "SmolLM2-1.7B-Instruct-q4f16_1-MLC",
             "q4f32_1": "SmolLM2-1.7B-Instruct-q4f32_1-MLC",
-        }
-    },
-    "SmolLM2-135M-Instruct": {
-        "-": {
+        },
+        "135M": {
             "q0f16": "SmolLM2-135M-Instruct-q0f16-MLC",
             "q0f32": "SmolLM2-135M-Instruct-q0f32-MLC",
             "q4f16_1": "SmolLM2-135M-Instruct-q4f16_1-MLC",
             "q4f32_1": "SmolLM2-135M-Instruct-q4f32_1-MLC",
-        }
-    },
-    "SmolLM2-360M-Instruct": {
-        "-": {
+        },
+        "360M": {
             "q0f16": "SmolLM2-360M-Instruct-q0f16-MLC",
             "q0f32": "SmolLM2-360M-Instruct-q0f32-MLC",
             "q4f16_1": "SmolLM2-360M-Instruct-q4f16_1-MLC",
             "q4f32_1": "SmolLM2-360M-Instruct-q4f32_1-MLC",
-        }
+        },
     },
     "gemma-2": {
         "27b": {
